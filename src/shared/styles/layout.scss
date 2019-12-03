@@ -51,4 +51,24 @@
       @extend %leaveDown;
     }
   }
+
+  @include orientation('landscape') {
+    @include media('>phone') {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 0 10vw;
+
+      .art {
+        height: 100%;
+        margin-top: 0;
+        width: 40vw;
+      }
+
+      .content {
+        padding: 0;
+        width: 40vw;
+      }
+    }
+  }
 }
