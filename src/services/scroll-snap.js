@@ -102,6 +102,7 @@ const HOC = (WrappedComponent) => {
       this.$node.addEventListener('touchstart', this.touchStartHandler, true);
       this.$node.addEventListener('touchend', this.touchEndHandler, true);
       this.$node.addEventListener('touchmove', this.touchMoveHandler, true);
+      window.addEventListener('keydown', this.onkeypress, true);
       this.disableScroll();
     }
 
@@ -110,6 +111,24 @@ const HOC = (WrappedComponent) => {
       this.$node.removeEventListener('touchstart', this.touchStartHandler, true);
       this.$node.removeEventListener('touchend', this.touchEndHandler, true);
       this.$node.removeEventListener('touchmove', this.touchMoveHandler, true);
+      window.removeEventListener('keydown', this.onkeypress, true);
+    }
+
+    onkeypress(e) {
+      switch (e.keyCode) {
+        case 37: // left
+          break;
+        case 38: // up
+          this.prev();
+          break;
+        case 39: // right
+          break;
+        case 40: // down
+          this.next();
+          break;
+        default:
+          break;
+      }
     }
 
     disableScroll() {
