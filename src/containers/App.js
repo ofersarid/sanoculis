@@ -3,12 +3,13 @@ import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
-import { device } from '/src/services';
+import { device, reactor } from '/src/services';
 
 class App extends React.PureComponent {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+    props.fetch('XRvqCiyrR7OOMLGohh9QvnrUOkO2');
+  }
 
   render() {
     const { route } = this.props;
@@ -22,12 +23,15 @@ class App extends React.PureComponent {
 }
 
 App.propTypes = {
-  route: PropTypes.object.isRequired
+  route: PropTypes.object.isRequired,
+  fetch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({}); // eslint-disable-line
 
-const mapDispatchToProps = {}; // eslint-disable-line
+const mapDispatchToProps = {
+  fetch: reactor.actions.fetch,
+};
 
 export default compose(
   // reduxRouter.HOC,

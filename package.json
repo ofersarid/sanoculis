@@ -2,6 +2,9 @@
   "name": "Sunoculis",
   "version": "1.0.0",
   "main": "src/server.js",
+  "browserslist": [
+    "last 2 Chrome versions"
+  ],
   "license": "MIT",
   "dependencies": {
     "auto-bind": "^1.2.1",
