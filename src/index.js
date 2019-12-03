@@ -9,6 +9,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { fromJS } from 'immutable';
 import { rootReducer } from './services';
 import routes from './routes';
+import './global.scss';
+import './fonts/simpler-pro/font.scss';
 
 const store = createStore(
   rootReducer,

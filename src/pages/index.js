@@ -1,1 +1,1 @@
-export { default as OnePager } from './OnePager';
+export { default as OnePager } from './one-pager';

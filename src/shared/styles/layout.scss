@@ -1,0 +1,45 @@
+@import './media-query-mixins';
+@import './dimentions';
+@import './colors';
+
+%page {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100vw;
+  box-sizing: border-box;
+  overflow: hidden;
+  //-webkit-overflow-scrolling: touch;
+
+  .art {
+    margin-top: 50px;
+    height: calc(40% - 50px);
+    width: 100vw;
+    background: #E8E8E8;
+    box-sizing: border-box;
+  }
+
+  .content {
+    width: 100vw;
+    padding: 0 10vw;
+    //background: palevioletred;
+    box-sizing: border-box;
+
+    &.comeUp {
+      @extend %comeUp;
+    }
+
+    &.comeDown {
+      @extend %comeDown;
+    }
+
+    &.leaveUp {
+      @extend %leaveUp;
+    }
+
+    &.leaveDown {
+      @extend %leaveDown;
+    }
+  }
+}
