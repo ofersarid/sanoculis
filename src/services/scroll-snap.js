@@ -79,11 +79,14 @@ const HOC = (WrappedComponent) => {
     }
 
     componentDidUpdate(prevProps) {
-      const { frame } = this.props;
+      const { frame, lastFrame } = this.props;
       if (frame === 1) {
         document.body.style['overscroll-behavior'] = 'auto';
       } else {
         document.body.style['overscroll-behavior'] = 'contain';
+      }
+      if (lastFrame < frame) {
+        this.updateRouteParam(lastFrame);
       }
       this.disableScroll();
     }

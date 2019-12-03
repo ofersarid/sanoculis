@@ -26,6 +26,15 @@
     //background: palevioletred;
     box-sizing: border-box;
 
+    @include orientation('portrait') {
+      @include media('>phone') {
+        width: 580px;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 90vw;
+      }
+    }
+
     &.comeUp {
       @extend %comeUp;
     }
