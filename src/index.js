@@ -17,7 +17,7 @@ const store = createStore(
 
 window.store = store;
 
-ReactDom.hydrate(
+ReactDom.render(
   <Provider
     store={store} >
     <BrowserRouter >

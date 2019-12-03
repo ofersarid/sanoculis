@@ -6,7 +6,7 @@ export default [{
   component: App,
   loadData: store => store.dispatch(reactor.actions.fetch('XRvqCiyrR7OOMLGohh9QvnrUOkO2')),
   routes: [{
-    path: '/',
+    path: '/:frame',
     component: OnePager,
     exact: true,
   }],
