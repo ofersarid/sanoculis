@@ -2,6 +2,11 @@
 @import './dimentions';
 @import './colors';
 
+$artWidthLandscape: 40vw;
+$contentWidthLandscape: 40vw;
+$artWidthPortrait: 100vw;
+$contentWidthPortrait: 100vw;
+
 %page {
   position: fixed;
   bottom: 0;
@@ -15,7 +20,7 @@
   .art {
     margin-top: 50px;
     height: calc(40% - 50px);
-    width: 100vw;
+    width: $artWidthPortrait;
     background: #E8E8E8;
     box-sizing: border-box;
     display: flex;
@@ -24,7 +29,7 @@
   }
 
   .content {
-    width: 100vw;
+    width: $contentWidthPortrait;
     padding: 0 10vw;
     //background: palevioletred;
     box-sizing: border-box;
@@ -65,12 +70,12 @@
       .art {
         height: 100%;
         margin-top: 0;
-        width: 40vw;
+        width: $artWidthLandscape;
       }
 
       .content {
         padding: 0;
-        width: 40vw;
+        width: $contentWidthLandscape;
       }
     }
   }

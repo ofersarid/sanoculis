@@ -1,8 +1,14 @@
 @import '/src/shared/styles';
 
-$eyeWidth: 200px;
-$eyeHeight: 100px;
-$pupilRad: 35px;
+$eyeWidthPortrait: 0.43 * $artWidthPortrait;
+$eyeHeightPortrait: 0.53 * $eyeWidthPortrait;
+$pupilRadPortrait: $eyeWidthPortrait / 9;
+
+$eyeWidthLandscape: 0.43 * $artWidthLandscape;
+$eyeHeightLandscape: 0.53 * $eyeWidthLandscape;
+$pupilRadLandscape: $eyeWidthLandscape / 9;
+
+
 $pupilOffset: 0.85;
 $pupilDiagonalOffset: 0.3;
 
@@ -26,8 +32,8 @@ $pupilDiagonalOffset: 0.3;
 
 :global {
   #eye-in-the-sky {
-    width: 200px;
-    height: 100px;
+    width: $eyeWidthPortrait;
+    height: $eyeHeightPortrait;
     border: 3px solid;
     border-radius: 100%;
     display: flex;
@@ -37,43 +43,87 @@ $pupilDiagonalOffset: 0.3;
     overflow: hidden;
 
     &.n .pupil {
-      transform: translate(0, #{-($eyeHeight / 2) + ($pupilOffset * $pupilRad)});
+      transform: translate(0, #{-($eyeHeightPortrait / 2) + ($pupilOffset * $pupilRadPortrait)});
     }
 
     &.ne .pupil {
-      transform: translate(#{($eyeWidth / 4)}, #{-($eyeHeight / 4) + ($pupilDiagonalOffset * $pupilRad)});
+      transform: translate(#{($eyeWidthPortrait / 4)}, #{-($eyeHeightPortrait / 4) + ($pupilDiagonalOffset * $pupilRadPortrait)});
     }
 
     &.e .pupil {
-      transform: translate(#{($eyeWidth / 2) - ($pupilOffset * $pupilRad)}, 0);
+      transform: translate(#{($eyeWidthPortrait / 2) - ($pupilOffset * $pupilRadPortrait)}, 0);
     }
 
     &.se .pupil {
-      transform: translate(#{($eyeWidth / 4)}, #{($eyeHeight / 4) - ($pupilDiagonalOffset * $pupilRad)});
+      transform: translate(#{($eyeWidthPortrait / 4)}, #{($eyeHeightPortrait / 4) - ($pupilDiagonalOffset * $pupilRadPortrait)});
     }
 
     &.s .pupil {
-      transform: translate(0, #{($eyeHeight / 2) - ($pupilOffset * $pupilRad)});
+      transform: translate(0, #{($eyeHeightPortrait / 2) - ($pupilOffset * $pupilRadPortrait)});
     }
 
     &.sw .pupil {
-      transform: translate(#{-($eyeWidth / 4)}, #{($eyeHeight / 4) - ($pupilDiagonalOffset * $pupilRad)});
+      transform: translate(#{-($eyeWidthPortrait / 4)}, #{($eyeHeightPortrait / 4) - ($pupilDiagonalOffset * $pupilRadPortrait)});
     }
 
     &.w .pupil {
-      transform: translate(#{-($eyeWidth / 2) + ($pupilOffset * $pupilRad)}, 0);
+      transform: translate(#{-($eyeWidthPortrait / 2) + ($pupilOffset * $pupilRadPortrait)}, 0);
     }
 
     &.nw .pupil {
-      transform: translate(#{-($eyeWidth / 4)}, #{-($eyeHeight / 4) + ($pupilDiagonalOffset * $pupilRad)});
+      transform: translate(#{-($eyeWidthPortrait / 4)}, #{-($eyeHeightPortrait / 4) + ($pupilDiagonalOffset * $pupilRadPortrait)});
     }
 
     .pupil {
-      width: #{$pupilRad * 2};
-      height: #{$pupilRad * 2};
+      width: #{$pupilRadPortrait * 2};
+      height: #{$pupilRadPortrait * 2};
       background: $black;
       border-radius: 100%;
       transition: transform 1.5s $ease;
+    }
+  }
+
+  @include orientation('landscape') {
+    #eye-in-the-sky {
+      width: $eyeWidthLandscape;
+      height: $eyeHeightLandscape;
+
+      &.n .pupil {
+        transform: translate(0, #{-($eyeHeightLandscape / 2) + ($pupilOffset * $pupilRadLandscape)});
+      }
+
+      &.ne .pupil {
+        transform: translate(#{($eyeWidthLandscape / 4)}, #{-($eyeHeightLandscape / 4) + ($pupilDiagonalOffset * $pupilRadLandscape)});
+      }
+
+      &.e .pupil {
+        transform: translate(#{($eyeWidthLandscape / 2) - ($pupilOffset * $pupilRadLandscape)}, 0);
+      }
+
+      &.se .pupil {
+        transform: translate(#{($eyeWidthLandscape / 4)}, #{($eyeHeightLandscape / 4) - ($pupilDiagonalOffset * $pupilRadLandscape)});
+      }
+
+      &.s .pupil {
+        transform: translate(0, #{($eyeHeightLandscape / 2) - ($pupilOffset * $pupilRadLandscape)});
+      }
+
+      &.sw .pupil {
+        transform: translate(#{-($eyeWidthLandscape / 4)}, #{($eyeHeightLandscape / 4) - ($pupilDiagonalOffset * $pupilRadLandscape)});
+      }
+
+      &.w .pupil {
+        transform: translate(#{-($eyeWidthLandscape / 2) + ($pupilOffset * $pupilRadLandscape)}, 0);
+      }
+
+      &.nw .pupil {
+        transform: translate(#{-($eyeWidthLandscape / 4)}, #{-($eyeHeightLandscape / 4) + ($pupilDiagonalOffset * $pupilRadLandscape)});
+      }
+
+      .pupil {
+        width: #{$pupilRadLandscape * 2};
+        height: #{$pupilRadLandscape * 2};
+      }
     }
   }
 }
