@@ -69,6 +69,8 @@ class EyeInTheSky extends PureComponent {
   }
 
   blink() {
+    const { blink } = this.props;
+    if (!blink) return;
     const eye = this.eye.current;
     clearTimeout(this.to);
     eye.classList.remove(styles.blink);
@@ -90,7 +92,8 @@ class EyeInTheSky extends PureComponent {
 
 EyeInTheSky.propTypes = {
   match: PropTypes.object.isRequired,
-  frame: PropTypes.number.isRequired
+  frame: PropTypes.number.isRequired,
+  blink: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => ({

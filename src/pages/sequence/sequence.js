@@ -47,7 +47,7 @@ class Sequence extends React.PureComponent {
     return (
       <div className={styles.container} >
         <div className={styles.art} >
-          <EyeInTheSky />
+          <EyeInTheSky blink={isMobile ? (frame / 2) % 1 !== 0 : true} />
         </div >
         {frame === 1 && (isMobile ? (
           <div className={cx(styles.content, animation)} >
