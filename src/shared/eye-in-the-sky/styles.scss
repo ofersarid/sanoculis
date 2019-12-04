@@ -4,9 +4,17 @@ $eyeWidthPortrait: 0.43 * $artWidthPortrait;
 $eyeHeightPortrait: 0.53 * $eyeWidthPortrait;
 $pupilRadPortrait: $eyeWidthPortrait / 9;
 
-$eyeWidthLandscape: 0.43 * $artWidthLandscape;
-$eyeHeightLandscape: 0.53 * $eyeWidthLandscape;
-$pupilRadLandscape: $eyeWidthLandscape / 9;
+$eyeWidthTablet: 0.43 * $artWidthTablet;
+$eyeHeightTablet: 0.53 * $eyeWidthTablet;
+$pupilRadTablet: $eyeWidthTablet / 9;
+
+$eyeWidthDesktop: 0.43 * $artWidthDesktop;
+$eyeHeightDesktop: 0.53 * $eyeWidthDesktop;
+$pupilRadDesktop: $eyeWidthDesktop / 9;
+
+$eyeWidthWideScreen: 0.43 * $artWidthWideScreen;
+$eyeHeightWideScreen: 0.53 * $eyeWidthWideScreen;
+$pupilRadWideScreen: $eyeWidthWideScreen / 9;
 
 
 $pupilOffset: 1.1;
@@ -85,44 +93,132 @@ $pupilDiagonalOffset: 0.3;
 
   @include orientation('landscape') {
     #eye-in-the-sky {
-      width: $eyeWidthLandscape;
-      height: $eyeHeightLandscape;
+      width: $eyeWidthTablet;
+      height: $eyeHeightTablet;
 
       &.n .pupil {
-        transform: translate(0, #{-($eyeHeightLandscape / 2) + ($pupilOffset * $pupilRadLandscape)});
+        transform: translate(0, #{-($eyeHeightTablet / 2) + ($pupilOffset * $pupilRadTablet)});
       }
 
       &.ne .pupil {
-        transform: translate(#{($eyeWidthLandscape / 4)}, #{-($eyeHeightLandscape / 4) + ($pupilDiagonalOffset * $pupilRadLandscape)});
+        transform: translate(#{($eyeWidthTablet / 4)}, #{-($eyeHeightTablet / 4) + ($pupilDiagonalOffset * $pupilRadTablet)});
       }
 
       &.e .pupil {
-        transform: translate(#{($eyeWidthLandscape / 2) - ($pupilOffset * $pupilRadLandscape)}, 0);
+        transform: translate(#{($eyeWidthTablet / 2) - ($pupilOffset * $pupilRadTablet)}, 0);
       }
 
       &.se .pupil {
-        transform: translate(#{($eyeWidthLandscape / 4)}, #{($eyeHeightLandscape / 4) - ($pupilDiagonalOffset * $pupilRadLandscape)});
+        transform: translate(#{($eyeWidthTablet / 4)}, #{($eyeHeightTablet / 4) - ($pupilDiagonalOffset * $pupilRadTablet)});
       }
 
       &.s .pupil {
-        transform: translate(0, #{($eyeHeightLandscape / 2) - ($pupilOffset * $pupilRadLandscape)});
+        transform: translate(0, #{($eyeHeightTablet / 2) - ($pupilOffset * $pupilRadTablet)});
       }
 
       &.sw .pupil {
-        transform: translate(#{-($eyeWidthLandscape / 4)}, #{($eyeHeightLandscape / 4) - ($pupilDiagonalOffset * $pupilRadLandscape)});
+        transform: translate(#{-($eyeWidthTablet / 4)}, #{($eyeHeightTablet / 4) - ($pupilDiagonalOffset * $pupilRadTablet)});
       }
 
       &.w .pupil {
-        transform: translate(#{-($eyeWidthLandscape / 2) + ($pupilOffset * $pupilRadLandscape)}, 0);
+        transform: translate(#{-($eyeWidthTablet / 2) + ($pupilOffset * $pupilRadTablet)}, 0);
       }
 
       &.nw .pupil {
-        transform: translate(#{-($eyeWidthLandscape / 4)}, #{-($eyeHeightLandscape / 4) + ($pupilDiagonalOffset * $pupilRadLandscape)});
+        transform: translate(#{-($eyeWidthTablet / 4)}, #{-($eyeHeightTablet / 4) + ($pupilDiagonalOffset * $pupilRadTablet)});
       }
 
       .pupil {
-        width: #{$pupilRadLandscape * 2};
-        height: #{$pupilRadLandscape * 2};
+        width: #{$pupilRadTablet * 2};
+        height: #{$pupilRadTablet * 2};
+      }
+    }
+
+    @include media('>tablet') {
+      #eye-in-the-sky {
+        width: $eyeWidthDesktop;
+        height: $eyeHeightDesktop;
+
+        &.n .pupil {
+          transform: translate(0, #{-($eyeHeightDesktop / 2) + ($pupilOffset * $pupilRadDesktop)});
+        }
+
+        &.ne .pupil {
+          transform: translate(#{($eyeWidthDesktop / 4)}, #{-($eyeHeightDesktop / 4) + ($pupilDiagonalOffset * $pupilRadDesktop)});
+        }
+
+        &.e .pupil {
+          transform: translate(#{($eyeWidthDesktop / 2) - ($pupilOffset * $pupilRadDesktop)}, 0);
+        }
+
+        &.se .pupil {
+          transform: translate(#{($eyeWidthDesktop / 4)}, #{($eyeHeightDesktop / 4) - ($pupilDiagonalOffset * $pupilRadDesktop)});
+        }
+
+        &.s .pupil {
+          transform: translate(0, #{($eyeHeightDesktop / 2) - ($pupilOffset * $pupilRadDesktop)});
+        }
+
+        &.sw .pupil {
+          transform: translate(#{-($eyeWidthDesktop / 4)}, #{($eyeHeightDesktop / 4) - ($pupilDiagonalOffset * $pupilRadDesktop)});
+        }
+
+        &.w .pupil {
+          transform: translate(#{-($eyeWidthDesktop / 2) + ($pupilOffset * $pupilRadDesktop)}, 0);
+        }
+
+        &.nw .pupil {
+          transform: translate(#{-($eyeWidthDesktop / 4)}, #{-($eyeHeightDesktop / 4) + ($pupilDiagonalOffset * $pupilRadDesktop)});
+        }
+
+        .pupil {
+          width: #{$pupilRadDesktop * 2};
+          height: #{$pupilRadDesktop * 2};
+        }
+      }
+    }
+
+    @include media('>desktop') {
+      #eye-in-the-sky {
+        width: $eyeWidthWideScreen;
+        height: $eyeHeightWideScreen;
+
+        &.n .pupil {
+          transform: translate(0, #{-($eyeHeightWideScreen / 2) + ($pupilOffset * $pupilRadWideScreen)});
+        }
+
+        &.ne .pupil {
+          transform: translate(#{($eyeWidthWideScreen / 4)}, #{-($eyeHeightWideScreen / 4) + ($pupilDiagonalOffset * $pupilRadWideScreen)});
+        }
+
+        &.e .pupil {
+          transform: translate(#{($eyeWidthWideScreen / 2) - ($pupilOffset * $pupilRadWideScreen)}, 0);
+        }
+
+        &.se .pupil {
+          transform: translate(#{($eyeWidthWideScreen / 4)}, #{($eyeHeightWideScreen / 4) - ($pupilDiagonalOffset * $pupilRadWideScreen)});
+        }
+
+        &.s .pupil {
+          transform: translate(0, #{($eyeHeightWideScreen / 2) - ($pupilOffset * $pupilRadWideScreen)});
+        }
+
+        &.sw .pupil {
+          transform: translate(#{-($eyeWidthWideScreen / 4)}, #{($eyeHeightWideScreen / 4) - ($pupilDiagonalOffset * $pupilRadWideScreen)});
+        }
+
+        &.w .pupil {
+          transform: translate(#{-($eyeWidthWideScreen / 2) + ($pupilOffset * $pupilRadWideScreen)}, 0);
+        }
+
+        &.nw .pupil {
+          transform: translate(#{-($eyeWidthWideScreen / 4)}, #{-($eyeHeightWideScreen / 4) + ($pupilDiagonalOffset * $pupilRadWideScreen)});
+        }
+
+        .pupil {
+          width: #{$pupilRadWideScreen * 2};
+          height: #{$pupilRadWideScreen * 2};
+        }
       }
     }
   }
