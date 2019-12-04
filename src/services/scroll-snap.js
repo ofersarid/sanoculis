@@ -79,14 +79,14 @@ const HOC = (WrappedComponent) => {
     }
 
     componentDidUpdate(prevProps) {
-      const { frame, lastFrame } = this.props;
+      const { frame, lastFrame, history } = this.props;
       if (frame === 1) {
         document.body.style['overscroll-behavior'] = 'auto';
       } else {
         document.body.style['overscroll-behavior'] = 'contain';
       }
       if (lastFrame < frame) {
-        this.updateRouteParam(lastFrame);
+        history.push(`/${lastFrame}`);
       }
       this.disableScroll();
     }
@@ -187,26 +187,18 @@ const HOC = (WrappedComponent) => {
       }
     };
 
-    updateRouteParam(index) {
-      const { location, history } = this.props;
-      const loc = location.pathname.split('/');
-      loc.pop();
-      loc.push(index);
-      history.push(loc.join('/'));
-    }
-
     next() {
-      const { disableNext, frame } = this.props;
+      const { disableNext, frame, history } = this.props;
       if (disableNext) return;
       const index = frame + 1;
-      this.updateRouteParam(index);
+      history.push(`/${index}`);
     };
 
     prev() {
-      const { disablePrev, frame } = this.props;
+      const { disablePrev, frame, history } = this.props;
       if (disablePrev) return;
       const index = Math.max(0, frame - 1);
-      this.updateRouteParam(index);
+      history.push(`/${index}`);
     };
 
     render() {

@@ -66,7 +66,7 @@
     "lint": "esw src/",
     "lint-watch": "esw src/ -w",
     "IEMessage": "node ie-message.js",
-    "build": "rimraf ./docs && NODE_ENV=dev parcel build index.html --public-url '.' --out-dir docs && copyfiles ie-message.svg robots.txt sitemap.xml -f ./docs/",
+    "build": "rimraf ./docs && NODE_ENV=dev parcel build index.html --public-url '.' --out-dir docs && copyfiles ie-message.svg robots.txt sitemap.xml 404.html -f ./docs/",
     "publish-github": "yarn build && git add . && git commit -am \"publish\" && git push",
     "copy-files": "rimraf ./functions/public && copyfiles -f ./docs/*.* ./functions/public --exclude ./docs/index.html && copyfiles -f ./docs/index.html ./functions",
     "delete-index-html": "del ./docs/index.html",
@@ -76,6 +76,7 @@
     "push-empty": "git commit -m 'rebuild pages' --allow-empty && git push origin master",
     "depcheck": "depcheck",
     "firebase-login": "firebase login",
-    "firebase-logout": "firebase logout"
+    "firebase-logout": "firebase logout",
+    "serve": "firebase serve --only functions,hosting"
   }
 }
