@@ -52,7 +52,7 @@ app.get('**', async function (req, res) {
     res.status(500).send(e.toString());
   }
 
-  // await browser.close();
+  await browser.close();
 });
 
 exports.ssr = functions.runWith({
