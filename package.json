@@ -68,7 +68,7 @@
     "IEMessage": "node ie-message.js",
     "build": "rimraf ./docs && NODE_ENV=dev parcel build index.html --public-url '.' --out-dir docs && copyfiles ie-message.svg robots.txt sitemap.xml 404.html -f ./docs/",
     "publish-github": "yarn build && git add . && git commit -am \"publish\" && git push",
-    "copy-files": "rimraf ./functions/public && copyfiles -f ./docs/*.* ./functions/public --exclude ./docs/index.html",
+    "copy-files": "rimraf ./functions/public && copyfiles -f ./docs/*.* ./functions/public --exclude ./docs/index.html && copyfiles -f ./docs/index.html ./functions",
     "delete-index-html": "del ./docs/index.html",
     "put-index-html-back": "copyfiles -f ./functions/index.html ./docs",
     "compile": "babel ./functions/server.js -o ./functions/index.js --presets=es2015",
