@@ -16,7 +16,7 @@ app.use(function cors(req, res, next) {
 app.all('*', async (req, res, next) => {
   res.locals.browser = await puppeteer.launch({
     args: ['--no-sandbox'],
-    headless: false,
+    headless: true,
   });
   next(); // pass control on to router.
 });
