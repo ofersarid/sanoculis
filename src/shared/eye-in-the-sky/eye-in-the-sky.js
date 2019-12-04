@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import cx from 'classnames';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -11,9 +11,54 @@ class EyeInTheSky extends PureComponent {
   constructor(props) {
     super(props);
     autoBind(this);
-    this.state = {
-      blink: true
-    };
+    this.pupil = React.createRef();
+    this.eye = React.createRef();
+  }
+
+  componentDidMount() {
+    this.bindEvents();
+  }
+
+  componentWillUnmount() {
+    this.unbindEvents();
+  }
+
+  bindEvents() {
+    window.addEventListener('mousemove', this.follow, true);
+    window.addEventListener('touchstart', this.follow, true);
+  }
+
+  unbindEvents() {
+    window.removeEventListener('mousemove', this.follow);
+    window.removeEventListener('touchstart', this.follow);
+  }
+
+  follow(e) {
+    const eye = this.eye.current;
+
+    const top = eye.offsetTop;
+    const left = eye.offsetLeft;
+    const height = eye.offsetHeight;
+    const width = eye.offsetWidth;
+
+    const pageX = e.clientX || e.touches[0].clientX;
+    const pageY = e.clientY || e.touches[0].clientY;
+
+    let className = '';
+
+    if (pageY > top + height) {
+      className += 's';
+    } else if (pageY < top) {
+      className += 'n';
+    }
+
+    if (pageX > left + width) {
+      className += 'e';
+    } else if (pageX < left) {
+      className += 'w';
+    }
+
+    eye.className = className;
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -24,18 +69,21 @@ class EyeInTheSky extends PureComponent {
   }
 
   blink() {
-    this.setState({ blink: false });
-    setTimeout(() => {
-      this.setState({ blink: true });
-    });
+    const eye = this.eye.current;
+    clearTimeout(this.to);
+    eye.classList.remove(styles.blink);
+    this.to = setTimeout(() => {
+      eye.classList.add(styles.blink);
+    }, 10);
   }
 
   render() {
-    const { blink } = this.state;
     return (
-      <div className={cx('eye-in-the-sky', styles.container, { [styles.blink]: blink })} >
-        <div className={cx('pupil', styles.pupil)} />
-      </div >
+      <Fragment >
+        <div id="eye-in-the-sky" ref={this.eye} >
+          <div className={cx('pupil')} ref={this.pupil} />
+        </div >
+      </Fragment >
     );
   }
 }

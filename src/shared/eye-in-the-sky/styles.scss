@@ -1,5 +1,11 @@
 @import '/src/shared/styles';
 
+$eyeWidth: 200px;
+$eyeHeight: 100px;
+$pupilRad: 35px;
+$pupilOffset: 0.85;
+$pupilDiagonalOffset: 0.3;
+
 @keyframes blink {
   0% {
     height: 100px;
@@ -14,25 +20,60 @@
   }
 }
 
-.container {
-  width: 200px;
-  height: 100px;
-  border: 3px solid;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: .25s $ease;
-  overflow: hidden;
-}
-
-.pupil {
-  width: 40px;
-  height: 40px;
-  background: $black;
-  border-radius: 100%;
-}
-
 .blink {
   animation: blink .4s forwards;
+}
+
+:global {
+  #eye-in-the-sky {
+    width: 200px;
+    height: 100px;
+    border: 3px solid;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .25s $ease;
+    overflow: hidden;
+
+    &.n .pupil {
+      transform: translate(0, #{-($eyeHeight / 2) + ($pupilOffset * $pupilRad)});
+    }
+
+    &.ne .pupil {
+      transform: translate(#{($eyeWidth / 4)}, #{-($eyeHeight / 4) + ($pupilDiagonalOffset * $pupilRad)});
+    }
+
+    &.e .pupil {
+      transform: translate(#{($eyeWidth / 2) - ($pupilOffset * $pupilRad)}, 0);
+    }
+
+    &.se .pupil {
+      transform: translate(#{($eyeWidth / 4)}, #{($eyeHeight / 4) - ($pupilDiagonalOffset * $pupilRad)});
+    }
+
+    &.s .pupil {
+      transform: translate(0, #{($eyeHeight / 2) - ($pupilOffset * $pupilRad)});
+    }
+
+    &.sw .pupil {
+      transform: translate(#{-($eyeWidth / 4)}, #{($eyeHeight / 4) - ($pupilDiagonalOffset * $pupilRad)});
+    }
+
+    &.w .pupil {
+      transform: translate(#{-($eyeWidth / 2) + ($pupilOffset * $pupilRad)}, 0);
+    }
+
+    &.nw .pupil {
+      transform: translate(#{-($eyeWidth / 4)}, #{-($eyeHeight / 4) + ($pupilDiagonalOffset * $pupilRad)});
+    }
+
+    .pupil {
+      width: #{$pupilRad * 2};
+      height: #{$pupilRad * 2};
+      background: $black;
+      border-radius: 100%;
+      transition: transform 1.5s $ease;
+    }
+  }
 }
