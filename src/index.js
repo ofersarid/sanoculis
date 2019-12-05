@@ -22,7 +22,7 @@ window.store = store;
 ReactDom.render(
   <Provider
     store={store} >
-    <BrowserRouter basename="/sanoculis/" >
+    <BrowserRouter basename="/" >
       <div > {renderRoutes(routes)} </div >
     </BrowserRouter >
   </Provider >,
