@@ -12,7 +12,7 @@ class App extends React.PureComponent {
   constructor(props) {
     super(props);
     props.fetch('XRvqCiyrR7OOMLGohh9QvnrUOkO2');
-    if (!props.frame) {
+    if (props.history.location.pathname === '/') {
       props.history.push('1');
     }
   }
@@ -30,14 +30,10 @@ class App extends React.PureComponent {
 App.propTypes = {
   route: PropTypes.object.isRequired,
   fetch: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired,
-  frame: PropTypes.number.isRequired,
   history: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  frame: parseInt(ownProps.match.params.frame)
-});
+const mapStateToProps = (state, ownProps) => ({}); // eslint-disable-line
 
 const mapDispatchToProps = {
   fetch: reactor.actions.fetch
@@ -46,6 +42,6 @@ const mapDispatchToProps = {
 export default compose(
   // reduxRouter.HOC,
   device.HOC,
-  connect(mapStateToProps, mapDispatchToProps),
   withRouter,
+  connect(mapStateToProps, mapDispatchToProps),
 )(App);

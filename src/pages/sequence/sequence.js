@@ -15,6 +15,9 @@ class Sequence extends React.PureComponent {
       forward: true,
       frame: props.frame
     };
+    if (!props.frame) {
+      props.history.push('1');
+    }
     this.updateFrameCount();
   }
 
@@ -79,7 +82,8 @@ Sequence.propTypes = {
   setLastFrame: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   frame: PropTypes.number.isRequired,
-  isMobile: PropTypes.bool.isRequired
+  isMobile: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({
