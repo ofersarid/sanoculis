@@ -1,9 +1,11 @@
 const functions = require('firebase-functions');
 const express = require('express');
 const puppeteer = require('puppeteer');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
-// app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 app.use(function cors(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   // res.header('Content-Type', 'application/json;charset=utf-8');
@@ -22,6 +24,10 @@ app.all('*', async (req, res, next) => {
 });
 
 app.get('**', async function (req, res) {
+  const data = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
+  res.status(200).send(data);
+  // return res.status(200).send(data);
+  const hash = data.match(/src\..*\.js/)[0].split('.')[1];
   const url = 'https://ofersarid.github.io/sanoculis';
   // if (!url) {
   //   return res.status(400).send(
@@ -30,13 +36,15 @@ app.get('**', async function (req, res) {
   const browser = res.locals.browser;
   try {
     const page = await browser.newPage();
-    await page.goto(url, { waitUntil: 'networkidle2' });
+    await page.setContent(data, { waitUntil: 'networkidle2' });
+    await epage.waitFor('#app');
     // Inject <base> on page to relative resources load properly.
-    // await page.evaluate(url => {
-    //   const base = document.createElement('base');
-    //   base.href = url;
-    //   document.head.prepend(base); // Add to top of head, before all other resources.
-    // }, url);
+    const evaluated = await page.evaluate(() => {
+      return document;
+    });
+
+    let html = await page.content();
+    res.status(200).send(html);
 
     // Remove scripts and html imports. They've already executed.
     // await page.evaluate(() => {
@@ -44,10 +52,11 @@ app.get('**', async function (req, res) {
     //   elements.forEach(e => e.remove());
     // });
 
-    const html = await page.content();
+    console.log(evaluated);
+    // html = html.replace('</body>', `<script src="src.${hash}" /></body>`);
     // await page.close();
 
-    res.status(200).send(html);
+    res.status(200).send(evaluated);
   } catch (e) {
     res.status(500).send(e.toString());
   }

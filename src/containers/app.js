@@ -20,7 +20,7 @@ class App extends React.PureComponent {
   render() {
     const { route } = this.props;
     return (
-      <div >
+      <div id="app" >
         {renderRoutes(route.routes)}
       </div >
     );

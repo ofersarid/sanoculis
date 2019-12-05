@@ -22,7 +22,7 @@ $pupilDiagonalOffset: 0.3;
 
 @keyframes blink {
   0% {
-    height: 100px;
+    height: $eyeHeightPortrait;
   }
 
   50% {
@@ -30,7 +30,7 @@ $pupilDiagonalOffset: 0.3;
   }
 
   100% {
-    height: 100px;
+    height: $eyeHeightPortrait;
   }
 }
 
@@ -92,6 +92,20 @@ $pupilDiagonalOffset: 0.3;
   }
 
   @include orientation('landscape') {
+    @keyframes blink {
+      0% {
+        height: $eyeHeightTablet;
+      }
+
+      50% {
+        height: 0px;
+      }
+
+      100% {
+        height: $eyeHeightTablet;
+      }
+    }
+
     #eye-in-the-sky {
       width: $eyeWidthTablet;
       height: $eyeHeightTablet;
@@ -135,6 +149,20 @@ $pupilDiagonalOffset: 0.3;
     }
 
     @include media('>tablet') {
+      @keyframes blink {
+        0% {
+          height: $eyeHeightDesktop;
+        }
+
+        50% {
+          height: 0px;
+        }
+
+        100% {
+          height: $eyeHeightDesktop;
+        }
+      }
+
       #eye-in-the-sky {
         width: $eyeWidthDesktop;
         height: $eyeHeightDesktop;
@@ -179,6 +207,20 @@ $pupilDiagonalOffset: 0.3;
     }
 
     @include media('>desktop') {
+      @keyframes blink {
+        0% {
+          height: $eyeHeightWideScreen;
+        }
+
+        50% {
+          height: 0px;
+        }
+
+        100% {
+          height: $eyeHeightWideScreen;
+        }
+      }
+
       #eye-in-the-sky {
         width: $eyeWidthWideScreen;
         height: $eyeHeightWideScreen;
