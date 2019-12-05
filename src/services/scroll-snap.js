@@ -86,7 +86,7 @@ const HOC = (WrappedComponent) => {
         document.body.style['overscroll-behavior'] = 'contain';
       }
       if (lastFrame < frame) {
-        history.push(`/${lastFrame}`);
+        history.push(`${lastFrame}`);
       }
       this.disableScroll();
     }
@@ -191,14 +191,14 @@ const HOC = (WrappedComponent) => {
       const { disableNext, frame, history } = this.props;
       if (disableNext) return;
       const index = frame + 1;
-      history.push(`/${index}`);
+      history.push(`${index}`);
     };
 
     prev() {
       const { disablePrev, frame, history } = this.props;
       if (disablePrev) return;
       const index = Math.max(0, frame - 1);
-      history.push(`/${index}`);
+      history.push(`${index}`);
     };
 
     render() {

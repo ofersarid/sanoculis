@@ -13,7 +13,7 @@ class App extends React.PureComponent {
     super(props);
     props.fetch('XRvqCiyrR7OOMLGohh9QvnrUOkO2');
     if (!props.frame) {
-      props.history.push('/1');
+      props.history.push('1');
     }
   }
 
