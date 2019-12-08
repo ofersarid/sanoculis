@@ -49,6 +49,10 @@ $contentWidthWideScreen: 35vw;
       }
     }
 
+    @include orientation('landscape') {
+      height: auto;
+    }
+
     &.comeUp {
       @extend %comeUp;
     }
