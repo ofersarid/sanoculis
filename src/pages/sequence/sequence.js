@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import cx from 'classnames';
@@ -7,6 +7,7 @@ import { scrollSnap, device } from '/src/services';
 import { EyeInTheSky } from '/src/shared';
 import { withRouter } from 'react-router';
 import styles from './styles.scss';
+import SequenceMobile from './sequence-mobile';
 
 class Sequence extends React.PureComponent {
   constructor(props) {
@@ -37,7 +38,7 @@ class Sequence extends React.PureComponent {
 
   updateFrameCount() {
     const { isMobile, setLastFrame } = this.props;
-    setLastFrame(isMobile ? 2 : 1);
+    setLastFrame(isMobile ? 4 : 2);
   }
 
   render() {
@@ -50,29 +51,33 @@ class Sequence extends React.PureComponent {
     return (
       <div className={styles.container} >
         <div className={styles.art} >
-          <EyeInTheSky blink={isMobile ? (frame / 2) % 1 !== 0 : true} />
+          <EyeInTheSky blink={isMobile ? forward ? (frame / 2) % 1 !== 0 : (frame / 2) % 1 === 0 : true} />
         </div >
-        {frame === 1 && (isMobile ? (
-          <div className={cx(styles.content, animation)} >
-            <h1 >A new approach in interventional Glaucoma A new approach Leader</h1 >
-          </div >
+        {isMobile ? (
+          <SequenceMobile
+            forward={forward}
+            frame={frame}
+            animation={animation}
+          />
         ) : (
-          <div className={cx(styles.content, animation)} >
-            <h1 >A new approach in interventional Glaucoma A new approach Leader</h1 >
-            <p >MIMS is the at the front of the IG... … a 1.5M procedure,, without stents.... with afficacy similar
-                to....
-                that allows for the most effective IOP management early on..</p >
-            <button type="button" >button</button >
-          </div >
-        ))}
-        {frame === 2 && (isMobile ? (
-          <div className={cx(styles.content, animation)} >
-            <p >MIMS is the at the front of the IG... … a 1.5M procedure,, without stents.... with afficacy similar
-                to....
-                that allows for the most effective IOP management early on..</p >
-            <button type="button" >button</button >
-          </div >
-        ) : null)}
+          <Fragment >
+            {frame === 1 && (
+              <div className={cx(styles.content, animation)} >
+                <h1 >A new approach in interventional Glaucoma A new approach Leader</h1 >
+                <p >MIMS is the at the front of the IG... … a 1.5M procedure,, without stents.... with afficacy similar
+                    to....
+                    that allows for the most effective IOP management early on..</p >
+                <button type="button" >button</button >
+              </div >
+            )}
+            {frame === 2 && <div className={cx(styles.content, animation)} >
+              <h1 >Stent-less, Simple & Fast Glaucoma Treatment</h1 >
+              <p >MIMS is the at the front of the IG... … a 1.5M procedure,, without stents.... with afficacy similar
+                  to....
+                  that allows for the most effective IOP management early on..</p >
+            </div >}
+          </Fragment >
+        )}
       </div >
     );
   }
@@ -98,5 +103,5 @@ const mapDispatchToProps = {
 export default compose(
   scrollSnap.HOC,
   withRouter,
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps, mapDispatchToProps)
 )(Sequence);
