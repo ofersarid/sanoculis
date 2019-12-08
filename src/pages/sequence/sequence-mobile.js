@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import { DynamicFontBox } from '/src/shared';
 import styles from './styles.scss';
 
 class SequenceMobile extends React.PureComponent {
@@ -11,9 +12,9 @@ class SequenceMobile extends React.PureComponent {
     return (
       <Fragment>
         {frame === 1 && (
-          <div className={cx(styles.content, animation)} >
+          <DynamicFontBox className={cx(styles.content, styles.header, animation)} >
             <h1 >A new approach in interventional Glaucoma A new approach Leader</h1 >
-          </div >
+          </DynamicFontBox >
         )}
         {frame === 2 && (
           <div className={cx(styles.content, animation)} >
@@ -24,9 +25,9 @@ class SequenceMobile extends React.PureComponent {
           </div >
         )}
         {frame === 3 && (
-          <div className={cx(styles.content, animation)} >
+          <DynamicFontBox className={cx(styles.content, styles.header, animation)} >
             <h1 >Stent-less, Simple & Fast Glaucoma Treatment</h1 >
-          </div >
+          </DynamicFontBox >
         )}
         {frame === 4 && (
           <div className={cx(styles.content, animation)} >

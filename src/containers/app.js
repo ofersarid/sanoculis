@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import { withRouter } from 'react-router';
-import { device, reactor } from '/src/services';
+import { device, reactor, Card } from '/src/services';
+import logo from '/src/images/logo.svg';
 
 // import styles from './app.scss';
 
@@ -22,6 +23,12 @@ class App extends React.PureComponent {
     return (
       <div id="app" >
         {renderRoutes(route.routes)}
+        <Card
+          logo={logo}
+          firstLine="Lorem Ipsum"
+          secondLine="Lorem Ipsum"
+          thirdLine="Lorem Ipsum"
+        />
       </div >
     );
   }

@@ -67,7 +67,7 @@ const actions = {
   })
 };
 
-const THRESHOLD = 10;
+const THRESHOLD = 20;
 
 const HOC = (WrappedComponent) => {
   class ScrollSnap extends Component {
@@ -173,17 +173,22 @@ const HOC = (WrappedComponent) => {
     touchStartHandler(e) {
       this.lock = false;
       this.yDown = e.touches[0].clientY;
+      this.xDown = e.touches[0].clientX;
     };
 
     touchEndHandler(e) {
       this.yDown = null;
+      this.xDown = null;
     }
 
     touchMoveHandler(e) {
       let yUp = e.touches[0].clientY;
-      let delta = (this.yDown - yUp);
-      if (Math.abs(delta) > THRESHOLD) {
-        this.snap(delta > 0 ? -1 : 1);
+      // let xUp = e.touches[0].clientX;
+      // let deltaX = (this.xDown - xUp);
+      // if (deltaX > 2) return;
+      let deltaY = (this.yDown - yUp);
+      if (Math.abs(deltaY) > THRESHOLD) {
+        this.snap(deltaY > 0 ? -1 : 1);
       }
     };
 
@@ -230,7 +235,7 @@ const HOC = (WrappedComponent) => {
     disableNext: selectors.disableNext(state),
     disablePrev: selectors.disablePrev(state),
     lastFrame: selectors.lastFrame(state),
-    frame: parseInt(ownProps.match.params.frame),
+    frame: parseInt(ownProps.match.params.frame)
   });
 
   const mapDispatchToProps = dispatch => ({
@@ -249,5 +254,5 @@ export default {
   selectors,
   actions,
   reducer,
-  HOC,
+  HOC
 };

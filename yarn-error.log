@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/ofersarid/.nvm/versions/node/v10.16.0/bin/node /usr/local/Cellar/yarn/1.7.0/libexec/bin/yarn.js add @babel/preset-2015 -D
+  /Users/ofersarid/.nvm/versions/node/v10.16.0/bin/node /usr/local/Cellar/yarn/1.7.0/libexec/bin/yarn.js add styles.scss
 
 PATH: 
   /Users/ofersarid/.nvm/versions/node/v10.16.0/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/Volumes/Projects/sanoculis/node_modules/.bin:/Users/ofersarid/.nvm/versions/node/v10.16.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.npmjs.org/@babel%2fpreset-2015: Not found
+  Error: https://registry.npmjs.org/styles.scss: Not found
       at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:65656:18)
       at Request.self.callback (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:134675:22)
       at Request.emit (events.js:198:13)
@@ -99,7 +99,7 @@ npm manifest:
       "lint": "esw src/",
       "lint-watch": "esw src/ -w",
       "IEMessage": "node ie-message.js",
-      "build-for-ssr": "babel src -d functions/src",
+      "build-for-ssr": "babel src -d functions/src && copyfiles ./src/fonts/**/*.* ./functions && copyfiles ./src/images/*.* ./functions",
       "build": "rimraf ./docs && NODE_ENV=dev parcel build index.html --public-url '.' --out-dir docs && copyfiles ie-message.svg robots.txt sitemap.xml 404.html -f ./docs/",
       "publish-github": "yarn build && git add . && git commit -am \"publish\" && git push",
       "copy-files": "rimraf ./functions/public && copyfiles -f ./docs/*.* ./functions/public --exclude ./docs/index.html && copyfiles -f ./docs/index.html ./functions",
