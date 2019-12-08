@@ -34,6 +34,7 @@ class EyeInTheSky extends PureComponent {
   }
 
   follow(e) {
+    clearTimeout(this.reset);
     const eye = this.eye.current;
 
     const top = eye.offsetTop;
@@ -59,6 +60,9 @@ class EyeInTheSky extends PureComponent {
     }
 
     eye.className = className;
+    this.reset = setTimeout(() => {
+      eye.className = '';
+    }, 3000);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
