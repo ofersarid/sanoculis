@@ -1,0 +1,53 @@
+@import '../shared/styles/index';
+@import './fonts';
+
+body {
+  font-family: 'simple-pro', serif;
+}
+
+h1 {
+  margin: 0 0 35px;
+  text-transform: uppercase;
+  font-size: 40px;
+  line-height: 1.3em;
+  letter-spacing: -0.5px;
+}
+
+p {
+  margin: 0 0 35px;
+  line-height: 2em;
+  font-size: 17px;
+}
+
+button {
+  font-size: 17px;
+  background: #E8E8E8;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  transition: .2s $ease;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:active {
+    background: darken(#E8E8E8, 5%);
+  }
+}
+
+.comeUp {
+  @extend %comeUp;
+}
+
+.comeDown {
+  @extend %comeDown;
+}
+
+.leaveUp {
+  @extend %leaveUp;
+}
+
+.leaveDown {
+  @extend %leaveDown;
+}

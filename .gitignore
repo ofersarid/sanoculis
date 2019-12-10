@@ -1,5 +1,3 @@
-.cache/
 node_modules/
-firebase-debug.log
 .idea/
-dist/
+.next/
