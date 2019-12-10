@@ -5,7 +5,7 @@ const ssr = require('./ssr');
 const createStore = require('./create-store');
 
 const app = express();
-app.use(express.static(__dirname + '/src'));
+app.use(express.static(__dirname + '/public'));
 
 
 app.get('*', async (req, res) => {
