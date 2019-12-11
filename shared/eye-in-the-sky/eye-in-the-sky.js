@@ -2,6 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import cx from 'classnames';
 import { compose } from 'redux';
 import autoBind from 'auto-bind';
+import { withRouter } from 'next/router';
 import styles from './styles.scss';
 
 class EyeInTheSky extends PureComponent {
@@ -18,7 +19,12 @@ class EyeInTheSky extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    this.blink();
+    const { router } = this.props;
+    const frame = parseInt(router.query.frame);
+    const prevFrame = parseInt(prevProps.router.query.frame);
+    if (frame !== prevFrame) {
+      this.blink();
+    }
   }
 
   componentWillUnmount() {
@@ -89,4 +95,4 @@ class EyeInTheSky extends PureComponent {
   }
 }
 
-export default compose()(EyeInTheSky);
+export default compose(withRouter)(EyeInTheSky);

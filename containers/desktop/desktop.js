@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 import { compose } from 'redux';
-import { withRouter } from 'next/router';
 import styles from './styles.scss';
 import { EyeInTheSky, ScrollSnap } from '../../shared';
 
@@ -31,4 +30,4 @@ const Desktop = ({ animation, frame }) => {
   );
 };
 
-export default compose(withRouter)(Desktop);
+export default compose()(Desktop);

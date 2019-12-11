@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import cx from 'classnames';
 import { compose } from 'redux';
-import { withRouter } from 'next/router';
 import styles from './styles.scss';
 import { DynamicFontBox, EyeInTheSky, ScrollSnap } from '../../shared';
 
@@ -43,4 +42,4 @@ const Mobile = ({ animation, forward, frame }) => {
   );
 };
 
-export default compose(withRouter)(Mobile);
+export default compose()(Mobile);
