@@ -44,13 +44,16 @@ const getData = (userId) => {
           if (d.data) { // if true than this is a document
             const docData = d.data();
             name = docData.name;
-            if (docData.data) { // this is a page
+            if (!docData.layout) {
+              // this is a page
               structuredData.pages[camelCase(name)] = docData.data;
-            } else { // this is collection
-              subCollectionOrder = docData.order.split(' | ');
+            } else {
+              // this is collection
+              subCollectionOrder = docData.order.length > 0 ? docData.order.split(' | ') : [];
               structuredData.collections[camelCase(name)] = [];
             }
-          } else { // this is a sub collection
+          } else {
+            // this is a sub collection
             const items = [];
             subCollectionOrder.forEach(id => {
               const doc = d.docs.find(doc => doc.id === id).data();
