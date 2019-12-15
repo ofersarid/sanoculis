@@ -45,7 +45,7 @@ class EyeInTheSky extends PureComponent {
     clearTimeout(this.reset);
     const eye = this.eye.current;
     if (!eye) return;
-    if (!e.clientX && !e.touches) return;
+    if (!e.clientX && !e.touches[0]) return;
     const top = eye.offsetTop;
     const left = eye.offsetLeft;
     const height = eye.offsetHeight;
